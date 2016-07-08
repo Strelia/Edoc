@@ -1,0 +1,42 @@
+﻿html, body {
+    height: 100%;
+    width: 100%;
+    font-family: "Times New Roman";
+}
+
+.height-full {
+    height: 100%;
+}
+
+.wrapp{
+    width: 90%;
+    margin-left: 5%;
+}
+
+.flex {
+    display: flex;
+}
+
+.horizontal-center {
+    justify-content: center;
+}
+
+.vertical-center {
+    align-items: center;
+}
+
+.size-lg{
+    font-size: 50px;
+}
+
+.size-md{
+    font-size: 35px;
+}
+
+.font-bold{
+    font-weight: bold;
+}
+
+.table-custom tbody tr:hover{
+    background-color: #EEE;
+}
