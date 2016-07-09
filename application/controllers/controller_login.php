@@ -7,14 +7,20 @@ class Controller_Login extends Controller
     {
         if (isset($_POST['login']) && !empty($_POST['login'])) {
             $login = $_POST['login'];
-            $reqUser = DBUtil::connectDB()->query("SELECT * FROM users WHERE email = '$login'");
+            echo $login."<br>";
+            $reqAdm = DBUtil::connectDB()->query("SELECT * FROM users WHERE email = '$login'");
+            $reqUse = DBUtil::connectDB()->query("SELECT id, email FROM rdas WHERE email = '$login'");
             $reqKey = DBUtil::connectDB()->query("SELECT * FROM passwords WHERE pass = '$login'");
-            if ($reqUser->num_rows > 0 || $reqKey->num_rows > 0) {
+            if ($reqAdm->num_rows > 0 || $reqUse->num_rows > 0 || $reqKey->num_rows > 0) {
                 $data["login_status"] = "access_granted";
                 session_start();
-                if($reqUser->num_rows > 0){
-                    $_SESSION['user'] = $reqUser->fetch_assoc();
-                }else{
+                if ($reqAdm->num_rows > 0) {
+                    $_SESSION['user'] = $reqAdm->fetch_assoc();
+                } else if ($reqUse->num_rows > 0) {
+                    $_SESSION['user'] = $reqUse->fetch_assoc();
+                    $_SESSION['user']["is_admin"] = false;
+                } else {
+                    $_SESSION['user']["id"] = "0";
                     $_SESSION['user']["email"] = "null";
                     $_SESSION['user']["is_admin"] = false;
                 }

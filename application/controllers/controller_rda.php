@@ -48,17 +48,13 @@ class Controller_Rda extends Controller
     {
         if (isset($_POST["id"])) {
             if (empty($_POST["id"])) {
-                $sql1 = "INSERT INTO users VALUES (NULL ,'" .
-                    $_POST["email"] ."', ". false . "')";
-                $sql2 = "INSERT INTO rdas VALUES (NULL ,'" . $_POST["name_rda"] . "','" .
+                $sql = "INSERT INTO rdas VALUES (NULL ,'" . $_POST["name_rda"] . "','" .
                     $_POST["name_admin_services"] . "','" . $_POST["email"] . "')";
             } else {
-                $sql1 = "UPDATE users SET email='" . $_POST["email"] . "' WHERE email =  (SELECT email FROM rdas WHERE id = " . $_POST["id"].")";
-                $sql2 = "UPDATE rdas SET name_rda='" . $_POST["name_rda"] . "', name_admin_services = '" . $_POST["name_admin_services"] . "'," .
+                $sql = "UPDATE rdas SET name_rda='" . $_POST["name_rda"] . "', name_admin_services = '" . $_POST["name_admin_services"] . "'," .
                     "email = '" . $_POST["email"] . "' WHERE id = " . $_POST["id"];
             }
-            DBUtil::connectDB()->query($sql1);
-            DBUtil::connectDB()->query($sql2);
+            DBUtil::connectDB()->query($sql);
         }
         header('Location:/rda/');
     }

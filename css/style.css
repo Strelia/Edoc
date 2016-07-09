@@ -40,3 +40,12 @@
 .table-custom tbody tr:hover{
     background-color: #EEE;
 }
+
+.scroll{
+    height: 100px;
+    overflow-y: scroll;
+}
+
+option{
+    width: 80%;
+}

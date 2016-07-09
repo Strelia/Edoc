@@ -39,6 +39,7 @@ if (!isset($_SESSION["user"]) && empty($_SESSION["user"])) {
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">Адміністрування <span class="caret"></span></a>
                         <ul class="dropdown-menu">
+                            <li><a href="/key/">Пароль</a></li>
                             <li role="separator" class="divider"></li>
                             <li class="dropdown-header">Реєстр адміністрації</li>
                             <li><a href="/main/">Список реєстру адміністрації</a></li>

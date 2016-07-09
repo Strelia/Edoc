@@ -12,7 +12,7 @@ if (!$_SESSION["user"]["is_admin"]) {
             <?php
         } else {
             ?>
-            <table>
+            <table class="table">
                 <thead>
                 <tr>
                     <th>Назва РДА/МВК</th>
@@ -23,32 +23,38 @@ if (!$_SESSION["user"]["is_admin"]) {
                 </thead>
                 <tbody>
                 <?php
-                foreach ($data as $key => $value) {
-                    if ($key != "id") {
-                        ?>
-                        <tr>
-                        <td>
-                            <?php
-                            echo $value;
+                foreach ($data as $cell) {
+                    ?>
+                    <tr>
+                    <?php
+                    foreach ($cell as $key => $value) {
+                        if ($key != "id") {
                             ?>
-                        </td>
+                            <td>
+                                <?php
+                                echo $value;
+                                ?>
+                            </td>
+                            <?php
+                        }
+                        ?>
                         <?php
                     }
                     ?>
-                    <td>
-                        <form method="post" action="/rda/edit">
-                            <input type="hidden" value="<?php echo data["id"]?>" name="id">
-                            <input type="submit" value="Змінити" name="id">
-                        </form>
-                    </td>
-                    <td>
-                        <form method="post" action="/rda/del">
-                            <input type="hidden" value="<?php echo data["id"]?>" name="id">
-                            <input type="submit" value="Видалити" name="id">
-                        </form>
-                    </td>
+                        <td>
+                            <form method="post" action="/rda/edit">
+                                <input type="hidden" value="<?php echo $cell["id"] ?>" name="id">
+                                <input class="btn" type="submit" value="Змінити">
+                            </form>
+                        </td>
+                        <td>
+                            <form method="post" action="/rda/del">
+                                <input type="hidden" value="<?php echo $cell["id"] ?>" name="id">
+                                <input class="btn" type="submit" value="Видалити">
+                            </form>
+                        </td>
                     </tr>
-                    <?php
+                        <?php
                 }
                 ?>
                 </tbody>

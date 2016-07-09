@@ -1,18 +1,18 @@
 <div class="row">
     <div>
         <div class="input-group">
-            
+
         </div>
     </div>
     <div>
         <?php
-        if(count($data) == 0){
+        if (count($data) == 0) {
             ?>
             <div class="alert alert-info">Дані відсутні</div>
             <?php
-        }else{
-         ?>
-            <table>
+        } else {
+            ?>
+            <table class="table">
                 <thead>
                 <tr>
                     <th>№ з/п</th>
@@ -31,41 +31,76 @@
                     <th>ПІБ отримувача документів</th>
                     <th>Стан виконання</th>
                     <th>Примітка</th>
+                    <?php
+                    if ($_SESSION["user"]["is_admin"]) {
+                        ?>
+                        <th colspan="2">Дії</th>
+                        <?php
+                    }
+                    ?>
                 </tr>
                 </thead>
                 <tbody>
                 <?php
-                foreach ($data as $key => $value) {
-                    if ($key != "id") {
-                        ?>
-                        <tr>
-                        <td>
-                            <?php
-                            echo $value;
-                            ?>
-                        </td>
-                        <?php
-                    }
+                foreach ($data as $cell) {
                     ?>
-                    <td>
-                        <form method="post" action="/main/edit">
-                            <input type="hidden" value="<?php echo data["id"]?>" name="id">
-                            <input type="submit" value="Змінити" name="id">
-                        </form>
-                    </td>
-                    <td>
-                        <form method="post" action="/main/del">
-                            <input type="hidden" value="<?php echo data["id"]?>" name="id">
-                            <input type="submit" value="Видалити" name="id">
-                        </form>
-                    </td>
+                    <tr class="<?php
+                        switch ($cell['status']){
+                            case 1: echo 'alert-success'; break;
+                            case 2: echo 'alert-danger'; break;
+                            case 3: echo 'alert-info'; break;
+                        }
+                    ?>">
+                        <?php
+                        foreach ($cell as $key => $value) {
+                            if ($key != "id") {
+                                ?>
+                                <td>
+                                    <?php
+                                    if($key == "status"){
+                                        switch ($value){
+                                            case 1: echo "у роботі"; break;
+                                            case 2: echo "не отримано РДА/МВК"; break;
+                                            case 3: echo "завершено справу"; break;
+                                        }
+                                    }else {
+                                        echo empty($value) ? " " : $value;
+                                    }
+                                    ?>
+                                </td>
+                                <?php
+                            }
+                            ?>
+                            <?php
+                        }
+                        ?>
+                        <?php
+                        if ($_SESSION["user"]["is_admin"]) {
+                            ?>
+                            <td>
+                                <form method="post" action="/main/edit">
+                                    <input type="hidden" value="<?php echo $cell["id"] ?>" name="id">
+                                    <input <?php echo $cell["status"] > 2 ? "disabled" : "" ?> class="btn" type="submit"
+                                                                                               value="Змінити">
+                                </form>
+                            </td>
+                            <td>
+                                <form method="post" action="/main/del">
+                                    <input type="hidden" value="<?php echo $cell["id"] ?>" name="id">
+                                    <input <?php echo $cell["status"] > 2 ? "disabled" : "" ?> class="btn" type="submit"
+                                                                                               value="Видалити">
+                                </form>
+                            </td>
+                            <?php
+                        }
+                        ?>
                     </tr>
                     <?php
                 }
                 ?>
                 </tbody>
             </table>
-        <?php
+            <?php
         }
         ?>
     </div>
