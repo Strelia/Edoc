@@ -15,8 +15,8 @@ if (!$_SESSION["user"]["is_admin"]) {
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Назва суб`єкта надання адміністративної послуги (СНАП)</th>
-                    <th>Назва адмін послуги</th>
+                    <th>Назва СНАП</th>
+                    <th>E-mail РДА/МВК</th>
                     <th colspan="2">Дії</th>
                 </tr>
                 </thead>

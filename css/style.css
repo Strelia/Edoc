@@ -8,7 +8,7 @@
     height: 100%;
 }
 
-.wrapp{
+.wrapp {
     width: 90%;
     margin-left: 5%;
 }
@@ -25,27 +25,60 @@
     align-items: center;
 }
 
-.size-lg{
+.size-lg {
     font-size: 50px;
 }
 
-.size-md{
+.size-md {
     font-size: 35px;
 }
 
-.font-bold{
+.font-bold {
     font-weight: bold;
 }
 
-.table-custom tbody tr:hover{
+.table-custom tbody tr:hover {
     background-color: #EEE;
 }
 
-.scroll{
+.scroll {
     height: 100px;
     overflow-y: scroll;
 }
 
-option{
+option {
     width: 80%;
+}
+
+.table-custom {
+    border-collapse: collapse;
+}
+
+.table-custom, .table-custom > thead > tr > th, td {
+    border: 1px solid black;
+}
+
+.table-custom th {
+    font-weight: bold;
+    vertical-align: top !important;
+}
+
+.yellow {
+    background: #e1e26c;
+}
+
+.red {
+    background: #ff8c80;
+}
+
+.blue {
+    background: #1b6d85;
+}
+
+.green {
+    background: #8dff8e;
+}
+
+.grey {
+    background: #5e5e5e;
 }
